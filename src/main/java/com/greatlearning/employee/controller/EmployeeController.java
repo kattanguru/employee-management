@@ -13,13 +13,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
-    private String String;
-
 
     @GetMapping()
     public ResponseEntity<List<Employee>> getAllEmployee() {

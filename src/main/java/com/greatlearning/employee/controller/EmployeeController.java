@@ -32,7 +32,7 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<List<Employee>> getEmployeeByName(@PathVariable("name") String name, @RequestParam("sort") String sort) {
         try {
             List<Employee> employees = employeeRepository.findByFirstName(name);
@@ -51,7 +51,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long id) {
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Integer id) {
         try {
             Optional<Employee> employee = employeeRepository.findById(id);
             return employee.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
@@ -81,7 +81,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") long id) {
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") Integer id) {
         try {
             employeeRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
